@@ -1,5 +1,6 @@
 #include <iostream>
 
+//function
 void GameIntroduction()
 {
     // print welcome message to the terminal
@@ -7,11 +8,13 @@ void GameIntroduction()
     std::cout << "You are a secret agent breaking into a secure server room";   //print out the string
     std::cout << std::endl;                                                     //create new line
     std::cout << "You need to enter the correct codes to continue\n";  
-    //Note: we can use \n instead of std::endl. \n is called escape sequence in strings. Cannot be used in variables
+    //Note: we can use \n escape sequence instead of std::endl to create a bew line. \n cannot be used in variables
+    //std::cout << "He said: \"Hello World!\"\n";   use "\"" escape sequence to insert a string with a quote in the output
 }
 
 void PlayGame()
 {
+    //a GameIntroduction() function called
     GameIntroduction();
 
     //To follow unreal engine 4 naming convention, variable declaration must start with a capital letter. Dont use "_" in between.
@@ -34,7 +37,7 @@ void PlayGame()
     int GuessA, GuessB, GuessC;
 
     std::cout << "Enter Guess A: "; 
-    std::cin >> GuessA;             //"std::cin >>" is mean input statement
+    std::cin >> GuessA;             //"std::cin >>" is a input statement
     std::cout << "Enter Guess B: "; 
     std::cin >> GuessB;
     std::cout << "Enter Guess C: ";
@@ -43,11 +46,12 @@ void PlayGame()
 
     std::cout <<"You entered: " << GuessA << GuessB << GuessC << std::endl;
 
-    //initializing variables and performing math operations
+    //store player guess
     int GuessSum = GuessA + GuessB + GuessC;
     int GuessProduct = GuessA * GuessB * GuessC;
     std::cout << std::endl;
 
+    //if condition
     if (GuessSum==CodeSum && GuessProduct==CodeProduct)
     {
         std::cout << "Your guess is correct, You win!\n";
@@ -58,8 +62,10 @@ void PlayGame()
     }
 }
 
+//default function. The main game function must be called inside of this function
 int main()
 {
+    //PlayGame() function was called
     PlayGame();
     return 0;
 }
