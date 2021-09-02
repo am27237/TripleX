@@ -12,7 +12,7 @@ void GameIntroduction()
     //std::cout << "He said: \"Hello World!\"\n";   use "\"" escape sequence to insert a string with a quote in the output
 }
 
-void PlayGame()
+bool PlayGame()
 {
     //a GameIntroduction() function called
     GameIntroduction();
@@ -55,17 +55,28 @@ void PlayGame()
     if (GuessSum==CodeSum && GuessProduct==CodeProduct)
     {
         std::cout << "Your guess is correct, You win!\n";
+        return false;    //we return boolean response because the Playgame() function was initialize as bool. Inthis case, return true
     }
     else
     {
         std::cout << "You guess was wrong, you lose!\n";
+        return true;   //this statement must return boolean output as well.
     }
+
+    
+
 }
 
 //default function. The main game function must be called inside of this function
 int main()
 {
-    //PlayGame() function was called
-    PlayGame();
-    return 0;
+    //while loop
+    while (true)
+    {
+        bool bLevelComplete = PlayGame();   //when a function was initialized as boolean, the return value must boolean as well
+        std::cin.clear();   //clear any errors
+        std::cin.ignore();  //Discards the buffer
+    }
+
+    return 0; 
 }
