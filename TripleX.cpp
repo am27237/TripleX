@@ -5,7 +5,7 @@ void GameIntroduction(int Difficulty)
 {
     // print welcome message to the terminal
     std::cout << std::endl;
-    std::cout << "You are a secret agent breaking into " << Difficulty;   //print out the string
+    std::cout << "You are a secret agent breaking into level " << Difficulty;   //print out the string
     std::cout << " a secure server room...\nYou need to enter the correct codes to continue\n";  
     //Note: we can use \n escape sequence instead of std::endl to create a bew line. \n cannot be used in variables
     //std::cout << "He said: \"Hello World!\"\n";   use "\"" escape sequence to insert a string with a quote in the output
@@ -58,7 +58,7 @@ bool PlayGame(int Difficulty)
     }
     else
     {
-        std::cout << "You guess was wrong, you lose!\n";
+        std::cout << "You guess was wrong! careful agent, try again\n";
         return false;   //this statement must return boolean output as well.
     }
 }
@@ -68,8 +68,8 @@ int main()
 {
 
     int LevelDifficulty = 1;
-    //while loop
-    while (true)
+    int const MaxLevel = 5;
+    while (LevelDifficulty <= MaxLevel)    //the game will loop until the game reaches the max level
     {
         bool bLevelComplete = PlayGame(LevelDifficulty);   //when a function was initialized as boolean, the return value must boolean as well
         std::cin.clear();   //clear any errors
@@ -80,6 +80,8 @@ int main()
             ++LevelDifficulty;       //increases difficulty
         }
     }
+
+    std::cout << "\nCongratulations! you have completed all Levels\n";
 
     return 0; 
 }
