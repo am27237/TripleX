@@ -1,21 +1,20 @@
 #include <iostream>
 
 //function
-void GameIntroduction()
+void GameIntroduction(int Difficulty)
 {
     // print welcome message to the terminal
     std::cout << std::endl;
-    std::cout << "You are a secret agent breaking into a secure server room";   //print out the string
-    std::cout << std::endl;                                                     //create new line
-    std::cout << "You need to enter the correct codes to continue\n";  
+    std::cout << "You are a secret agent breaking into " << Difficulty;   //print out the string
+    std::cout << " a secure server room...\nYou need to enter the correct codes to continue\n";  
     //Note: we can use \n escape sequence instead of std::endl to create a bew line. \n cannot be used in variables
     //std::cout << "He said: \"Hello World!\"\n";   use "\"" escape sequence to insert a string with a quote in the output
 }
 
-bool PlayGame()
+bool PlayGame(int Difficulty)
 {
     //a GameIntroduction() function called
-    GameIntroduction();
+    GameIntroduction(Difficulty);
 
     //To follow unreal engine 4 naming convention, variable declaration must start with a capital letter. Dont use "_" in between.
     const int CodeA = 4;    
@@ -55,27 +54,31 @@ bool PlayGame()
     if (GuessSum==CodeSum && GuessProduct==CodeProduct)
     {
         std::cout << "Your guess is correct, You win!\n";
-        return false;    //we return boolean response because the Playgame() function was initialize as bool. Inthis case, return true
+        return true;    //we return boolean response because the Playgame() function was initialize as bool. Inthis case, return true
     }
     else
     {
         std::cout << "You guess was wrong, you lose!\n";
-        return true;   //this statement must return boolean output as well.
+        return false;   //this statement must return boolean output as well.
     }
-
-    
-
 }
 
 //default function. The main game function must be called inside of this function
 int main()
 {
+
+    int LevelDifficulty = 1;
     //while loop
     while (true)
     {
-        bool bLevelComplete = PlayGame();   //when a function was initialized as boolean, the return value must boolean as well
+        bool bLevelComplete = PlayGame(LevelDifficulty);   //when a function was initialized as boolean, the return value must boolean as well
         std::cin.clear();   //clear any errors
         std::cin.ignore();  //Discards the buffer
+
+        if (bLevelComplete)
+        {
+            ++LevelDifficulty;       //increases difficulty
+        }
     }
 
     return 0; 
