@@ -1,4 +1,5 @@
-#include <iostream>
+#include <iostream>     //Default library
+#include <ctime>        //Library to access the computer time
 
 //function
 void GameIntroduction(int Difficulty)
@@ -17,9 +18,9 @@ bool PlayGame(int Difficulty)
     GameIntroduction(Difficulty);
 
     //To follow unreal engine 4 naming convention, variable declaration must start with a capital letter. Dont use "_" in between.
-    const int CodeA = 4;    
-    const int CodeB = 3;
-    const int CodeC = 2;
+    const int CodeA = rand() % Difficulty + Difficulty ;    //rand() operator generates from 0 to 32,767 random numbers
+    const int CodeB = rand() % Difficulty + Difficulty;     //rand() % Difficulty limits the rand() operator to generate random numbers depends on Difficulty waht is Level Number
+    const int CodeC = rand() % Difficulty + Difficulty;
 
     //initializing variables
     int CodeSum = CodeA + CodeB + CodeC;
@@ -53,7 +54,7 @@ bool PlayGame(int Difficulty)
     //if condition
     if (GuessSum==CodeSum && GuessProduct==CodeProduct)
     {
-        std::cout << "Your guess is correct, You win!\n";
+        std::cout << "Your guess is correct! keep going\n";
         return true;    //we return boolean response because the Playgame() function was initialize as bool. Inthis case, return true
     }
     else
@@ -66,9 +67,11 @@ bool PlayGame(int Difficulty)
 //default function. The main game function must be called inside of this function
 int main()
 {
+    srand(time(NULL));      //requires #include <ctime> library. Create new random sequence based on the time of the day
 
     int LevelDifficulty = 1;
     int const MaxLevel = 5;
+    
     while (LevelDifficulty <= MaxLevel)    //the game will loop until the game reaches the max level
     {
         bool bLevelComplete = PlayGame(LevelDifficulty);   //when a function was initialized as boolean, the return value must boolean as well
